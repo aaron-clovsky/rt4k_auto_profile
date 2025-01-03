@@ -1,0 +1,10 @@
+[Unit]
+Description=RetroTink 4K Automatic Profile Service
+
+[Service]
+ExecStart=/home/pi/rt4k_auto.sh
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target
