@@ -1,6 +1,6 @@
 #!/bin/bash
 ################################################################################
-# Automatically Set RetroTink 4K Profile on Input Change
+# Automatically Set RetroTINK 4K Profile on Input Change
 #
 # Copyright (c) 2025 Aaron Clovsky
 #
@@ -31,8 +31,8 @@
 READHDMI=/home/pi/ctrl_monoprice_4067
 READSCART=/home/pi/read_gscartsw.sh
 
-# All errors exit immediately
-set -e
+# All errors exit immediately and unset variables are errors
+set -euo pipefail
 
 # Determine which serial device is the HDMI switch
 if ! $READHDMI /dev/ttyUSB0 >/dev/null 2>&1; then
@@ -48,7 +48,7 @@ if ! $READHDMI $DEV_HDMI >/dev/null 2>&1; then
   exit 1
 fi
 
-# Initialize the RetroTink 4K's serial connection
+# Initialize the RetroTINK 4K's serial connection
 stty -F $DEV_RT4K 115200 cs8 -cstopb -parenb
 
 # This is not a valid command, but without it the first remote command may fail

@@ -1,5 +1,5 @@
 [Unit]
-Description=RetroTink 4K Automatic Profile Service
+Description=RetroTINK 4K Automatic Profile Service
 
 [Service]
 ExecStart=/home/pi/rt4k_auto.sh

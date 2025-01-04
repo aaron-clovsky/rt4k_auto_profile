@@ -1,4 +1,4 @@
-# Automatic Profiles for RetroTINK 4K using a Raspberry Pi
+# Automatic RetroTINK 4K Profiles using a Raspberry Pi
 
 ## MOTIVATION
 
@@ -22,7 +22,7 @@ made it very easy to interface with
 ## DESCRIPTION
 
 This service detects input changes on the HRM-2218F and
-gscartsw and automatically loads one of 12 profiles on the RetroTink 4K
+gscartsw and automatically loads one of 12 profiles on the RetroTINK 4K
 (the same 12 profiles which are mapped to the 12 numbered buttons on the
 remote). The 8 HRM-2218F HDMI inputs are mapped to profiles 1-8 and the lower 4
 SCART inputs (the 4 inputs farthest from the 2 outputs) on the gscartsw are
@@ -89,9 +89,10 @@ required, then copy ```read_gscartsw.sh``` to ```/home/pi``` and run the
 following commands on the Pi:
     - ```cd /home/pi```
     - ```chmod +x read_gscartsw.sh```
-- Download [rt4k_auto.sh](https://tbd.tbd)
-and [rt4k_auto.service](https://tbd.tbd) from this repo, and
-copy the files to ```/home/pi```, then run the following commands on the Pi:
+- Download [rt4k_auto.sh](https://github.com/aaron-clovsky/rt4k_auto_profile/blob/main/rt4k_auto.sh)
+and [rt4k_auto.service](https://github.com/aaron-clovsky/rt4k_auto_profile/blob/main/rt4k_auto.service)
+from this repo, and copy the files to ```/home/pi```, then run the following
+commands on the Pi:
   - ```cd /home/pi```
   - ```chmod +x rt4k_auto.sh```
   - ```sudo -s```
@@ -105,9 +106,9 @@ the hookup diagram
 
 ## HOOKUP DIAGRAM
 ```
-                PWR | <-------- USB Cable --------> [5v 2A USB PSU #1]
-[Raspberry Pi] GPIO | <-------- 4x Wires ---------> [gscartsw]
-                USB | <-------- USB Cable --------> [USB Hub]
+                PWR | <------- USB Cable -------> [5v 2A USB PSU #1]
+[Raspberry Pi] GPIO | <------- 4x Wires --------> [gscartsw]
+                USB | <------- USB Cable -------> [USB Hub]
 
                                  |--- Power ----> [5v 2A USB PSU #2]
           | <----- USB-C Y Cable |--- Data -----> [RetroTINK 4k]
@@ -121,21 +122,21 @@ Run ```sudo systemctl status rt4k_auto.service``` to view the service's logs
 
 ## EXTENDING THIS PROJECT
 
-[rt4k_auto.sh](https://tbd.tbd) is relatively simple to extend, more devices
+[rt4k_auto.sh](https://github.com/aaron-clovsky/rt4k_auto_profile/blob/main/rt4k_auto.sh) is relatively simple to extend, more devices
 and more types of devices can be added as needed.
 <br><br>
 Both
 [ctrl_monoprice_4067](https://github.com/aaron-clovsky/ctrl_monoprice_4067)
 and [read_gscartsw.sh](https://github.com/aaron-clovsky/read_gscartsw) are
-implemented to work the same way:
+implemented to work the same way when run:
 - Write a single number: \[0-8\] as output to stdout<br>
 (all other output goes to stderr)
-- 0 indicates: *NO ACTIVE INPUT*, all other values specify an active input
-<br><br>
+- 0 indicates: *NO ACTIVE INPUT*, \[1-8\] specifies the active input
+
 By writing additional programs or scripts that follow this protocol, new
-sections can be added to the main loop of [rt4k_auto.sh](https://tbd.tbd). The
-only current limitation is that no more than 12 profiles can currently be
-selected.
+devices can be polled in the main loop of [rt4k_auto.sh](https://github.com/aaron-clovsky/rt4k_auto_profile/blob/main/rt4k_auto.sh).
+The only current limitation is that no more than 12 profiles can currently be
+selected .
 
 ## FUTURE DIRECTIONS
 
@@ -144,9 +145,8 @@ would provide more than 12 automatic profile options.
 
 ## NOTES
 
-Despite being discontinued, the HRM-2218F was used due to its excellent
-MiSTer DirectVideo SPD Infoframe (DV1) compatibility
+The HRM-2218F has excellent MiSTer DirectVideo DV1 SPD Infoframe compatibility.
 
-## License
+## LICENSE
 This software is licensed under the
 [MIT License](https://opensource.org/licenses/MIT).
